@@ -66,15 +66,14 @@ const DISCUSSIONS_DATA: Discussion[] = [
   },
   {
     id: "disc-3",
-    category: "Audit & Assurance",
-    title: "CRA-3 Reconciliation compliance checklist for Cost Audit FY 2025-26",
-    author: "CMA Suresh Nair",
-    role: "Practicing Cost Auditor",
+    title: "Recent RBI circular discussion on overseas investment disclosures under FEMA",
+    author: "Adv. Suresh Nair",
+    role: "Corporate Legal Advisor",
     excerpt: "Key reconciliation formats under Table D are scrutinized heavily during reviews. Make sure materials transfers are recorded at cost, avoiding margin markups. Here is my 5-step validation plan...",
     replies: 9,
     views: 145,
     time: "1 day ago",
-    tag: "Cost Audit"
+    tag: "FEMA"
   },
   {
     id: "disc-4",
@@ -90,7 +89,7 @@ const DISCUSSIONS_DATA: Discussion[] = [
   },
   {
     id: "disc-5",
-    category: "Corporate Compliance",
+    category: "SEBI Compliance",
     title: "SEBI Listing Regulations (LODR) amendments on board meeting disclosure timelines",
     author: "CS Vikramaditya",
     role: "Compliance Officer, Apex Group",
@@ -212,17 +211,17 @@ export default function Home() {
           {/* Tagline Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 border border-border-light bg-white/80 rounded-full text-xs font-bold text-secondary mb-6 tracking-wider shadow-sm uppercase">
             <Sparkles className="w-3.5 h-3.5 text-accent-red" />
-            <span>Exclusive Peer Network</span>
+            <span>India's Trusted Professional Network</span>
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl md:text-6xl font-light text-center leading-tight tracking-tight text-charcoal max-w-4xl font-sans">
-            India's Largest Community for <span className="font-extrabold block sm:inline">CA, CS & LEGAL</span> Professionals
+            India's Largest Community for <span className="font-extrabold block sm:inline">CA, CS & Corporate Legal Professionals</span> Professionals
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-secondary text-center max-w-2xl mt-6 font-normal leading-relaxed">
-            Connect with professionals, participate in discussions, access expert insights and stay updated with industry developments.
+          Connect with Chartered Accountants, Company Secretaries, Legal Advisors and Compliance Professionals. Participate in discussions, access expert insights and stay ahead of regulatory developments.
           </p>
 
           {/* Actions */}
@@ -275,12 +274,13 @@ export default function Home() {
                   </div>
                   <div className="space-y-1">
                     {[
-                      { name: "All", label: "Global Feed" },
-                      { name: "GST & Indirect Tax", label: "GST & Indirect Tax" },
-                      { name: "Corporate Compliance", label: "Corporate Compliance" },
-                      { name: "Audit & Assurance", label: "Audit & Assurance" },
-                      { name: "Direct Taxation", label: "Direct Taxation" }
-                    ].map((cat) => (
+                      { name: "GST & Indirect Tax" },
+                      { name: "Corporate Law" },
+                      { name: "Compliance & Governance" },
+                      { name: "Direct Taxation" },
+                      { name: "FEMA & Regulatory" },
+                      { name: "Legal Advisory" }
+                     ].map((cat) => (
                       <button
                         key={cat.name}
                         onClick={() => setSelectedCategory(cat.name)}
@@ -306,11 +306,11 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-                      <span className="text-xs font-semibold text-charcoal">CS Priyal S. <span className="text-secondary font-normal">(SEBI Rules)</span></span>
+                      <span className="text-xs font-semibold text-charcoal">CS Priyal S. <span className="text-secondary font-normal">(Corporate Compliance)</span></span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
-                      <span className="text-xs font-semibold text-charcoal">CMA Suresh N. <span className="text-secondary font-normal">(Cost Audit)</span></span>
+                      <span className="text-xs font-semibold text-charcoal">Adv. Neha M. <span className="text-secondary font-normal">(Corporate Law)</span></span>
                     </div>
                   </div>
                 </div>
@@ -395,7 +395,7 @@ export default function Home() {
                         <div className="mt-4 pt-3 border-t border-border-light/60 flex items-center gap-2">
                           <input 
                             type="text" 
-                            placeholder="Add your advisory insight..." 
+                            placeholder="Share your professional perspective..."
                             value={currentMessageInput}
                             onChange={(e) => setCurrentMessageInput(e.target.value)}
                             onKeyDown={(e) => {
@@ -414,14 +414,14 @@ export default function Home() {
                     ))
                   ) : (
                     <div className="text-center py-16 border border-dashed border-border-light">
-                      <span className="text-secondary text-sm font-semibold">No discussions matching query. Try searching for "GST", "SBO" or "Tax".</span>
+                      <span className="text-secondary text-sm font-semibold">No discussions found. Try searching for GST, Corporate Law, FEMA, Compliance or Direct Tax.</span>
                     </div>
                   )}
                 </div>
 
                 <div className="mt-8 text-center pt-4 border-t border-border-light/80">
                   <a href="#contact" className="inline-flex items-center gap-2 text-xs font-bold text-charcoal hover:text-accent-red transition-colors uppercase tracking-wider">
-                    <span>Unlock full database of 50,000+ technical threads</span>
+                    <span>Access 50,000+ expert discussions, legal insights and compliance resources</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
