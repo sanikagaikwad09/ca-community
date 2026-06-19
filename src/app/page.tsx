@@ -66,6 +66,7 @@ const DISCUSSIONS_DATA: Discussion[] = [
   },
   {
     id: "disc-3",
+    category: "FEMA & Regulatory",
     title: "Recent RBI circular discussion on overseas investment disclosures under FEMA",
     author: "Adv. Suresh Nair",
     role: "Corporate Legal Advisor",
@@ -291,7 +292,7 @@ export default function Home() {
                         }`}
                       >
                         <Hash className={`w-3.5 h-3.5 ${selectedCategory === cat.name ? "text-accent-red" : "text-gray-400"}`} />
-                        <span className="truncate">{cat.label}</span>
+                        <span className="truncate">{cat.name}</span>
                       </button>
                     ))}
                   </div>
