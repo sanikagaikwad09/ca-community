@@ -171,7 +171,7 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-accent-red"></div>
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold tracking-widest text-sm text-charcoal">APEX LEDGER</span>
+              <span className="font-extrabold tracking-widest text-sm text-charcoal">Apex Forum</span>
               <span className="text-[10px] text-secondary tracking-wider -mt-1 font-semibold">PROFESSIONAL NETWORK</span>
             </div>
           </div>
@@ -217,7 +217,7 @@ export default function Home() {
 
           {/* Headline */}
           <h1 className="text-4xl md:text-6xl font-light text-center leading-tight tracking-tight text-charcoal max-w-4xl font-sans">
-            India's Largest Community for <span className="font-extrabold block sm:inline">CA, CS & CMA</span> Professionals
+            India's Largest Community for <span className="font-extrabold block sm:inline">CA, CS & LEGAL</span> Professionals
           </h1>
 
           {/* Subheadline */}
