@@ -217,7 +217,7 @@ export default function Home() {
 
           {/* Headline */}
           <h1 className="text-4xl md:text-6xl font-light text-center leading-tight tracking-tight text-charcoal max-w-4xl font-sans">
-            India's Largest Community for <span className="font-extrabold block sm:inline">CA, CS & Corporate Legal Professionals</span> Professionals
+            India's Largest Community for <span className="font-extrabold block sm:inline">CA, CS & Corporate Legal</span> Professionals
           </h1>
 
           {/* Subheadline */}
