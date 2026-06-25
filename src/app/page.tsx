@@ -6,7 +6,6 @@ import {
   BookOpen, 
   Users, 
   Bell, 
-  Briefcase, 
   Share2, 
   ArrowRight, 
   Search, 
@@ -20,9 +19,8 @@ import {
   Award,
   Hash,
   Send,
-  Sparkles,
   ExternalLink,
-  ChevronDown
+  Shield
 } from "lucide-react";
 
 // Mock discussions data for the interactive Hero Mockup Feed
@@ -54,7 +52,7 @@ const DISCUSSIONS_DATA: Discussion[] = [
   },
   {
     id: "disc-2",
-    category: "Corporate Compliance",
+    category: "Corporate Law",
     title: "Significant Beneficial Ownership (SBO) disclosure rules under Section 90",
     author: "CS Priyal Shah",
     role: "Corporate Counsel, Zenith Advisory",
@@ -67,10 +65,10 @@ const DISCUSSIONS_DATA: Discussion[] = [
   {
     id: "disc-3",
     category: "FEMA & Regulatory",
-    title: "Recent RBI circular discussion on overseas investment disclosures under FEMA",
+    title: "FEMA compliance: RBI circular on late submission fees (LSF) for ODI reporting",
     author: "Adv. Suresh Nair",
-    role: "Corporate Legal Advisor",
-    excerpt: "Key reconciliation formats under Table D are scrutinized heavily during reviews. Make sure materials transfers are recorded at cost, avoiding margin markups. Here is my 5-step validation plan...",
+    role: "FEMA & RBI Regulatory Counsel",
+    excerpt: "The revised guidelines for late filings of Form ODI Part II have clarified LSF computations, but ambiguity remains regarding historical delays under the older compounding regime. Let's trace the compounding precedents...",
     replies: 9,
     views: 145,
     time: "1 day ago",
@@ -81,7 +79,7 @@ const DISCUSSIONS_DATA: Discussion[] = [
     category: "Direct Taxation",
     title: "Section 43B(h) amendment impact on payments made to MSME traders",
     author: "CA Rahul Verma",
-    role: "SME Advisory Services",
+    role: "SME Tax Advisory Services",
     excerpt: "The definition of 'Enterprise' under the MSMED Act excludes retail/wholesale traders from credit benefits. Thus, payment delays to wholesale traders should not attract disallowance under 43B(h). Agree?",
     replies: 31,
     views: 512,
@@ -166,36 +164,37 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 border-2 border-charcoal flex items-center justify-center font-bold tracking-tighter text-lg bg-charcoal text-white relative overflow-hidden">
+            <div className="w-10 h-10 border border-charcoal flex items-center justify-center font-serif font-bold text-lg bg-charcoal text-white relative overflow-hidden rounded-sm">
               <span className="relative z-10">A</span>
               <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-accent-red"></div>
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold tracking-widest text-sm text-charcoal">Apex Forum</span>
-              <span className="text-[10px] text-secondary tracking-wider -mt-1 font-semibold">PROFESSIONAL NETWORK</span>
+              <span className="text-[9px] text-secondary tracking-wider -mt-1 font-semibold uppercase">PROFESSIONAL NETWORK</span>
             </div>
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide text-secondary">
-            <a href="#forum" className="hover:text-charcoal transition-colors">Discussion Forum</a>
-            <a href="#features" className="hover:text-charcoal transition-colors">Features</a>
-            <a href="#publications" className="hover:text-charcoal transition-colors">Publications</a>
-            <a href="#trending" className="hover:text-charcoal transition-colors">Trending</a>
-            <a href="#showcase" className="hover:text-charcoal transition-colors">Mobile App</a>
+          <nav className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-secondary">
+            <a href="#forum" className="hover:text-charcoal hover:underline decoration-accent-red decoration-2 underline-offset-4 transition-colors">Discussion Forum</a>
+            <a href="#features" className="hover:text-charcoal hover:underline decoration-accent-red decoration-2 underline-offset-4 transition-colors">Features</a>
+            <a href="#publications" className="hover:text-charcoal hover:underline decoration-accent-red decoration-2 underline-offset-4 transition-colors">Publications</a>
+            <a href="#trending" className="hover:text-charcoal hover:underline decoration-accent-red decoration-2 underline-offset-4 transition-colors">Trending</a>
+            <a href="#showcase" className="hover:text-charcoal hover:underline decoration-accent-red decoration-2 underline-offset-4 transition-colors">Mobile App</a>
           </nav>
 
-          {/* CTAs */}
+          {/* CTAs with Auth cues */}
           <div className="flex items-center gap-4">
             <a 
               href="#contact" 
-              className="text-sm font-semibold text-secondary hover:text-charcoal px-3 py-2 transition-colors hidden sm:block"
+              className="text-xs font-bold uppercase tracking-wider text-secondary hover:text-charcoal py-2 transition-colors hidden sm:flex items-center gap-1.5"
             >
-              Sign In
+              <Lock className="w-3.5 h-3.5 text-secondary" />
+              <span>Sign In</span>
             </a>
             <a 
               href="#contact" 
-              className="text-xs sm:text-sm font-bold bg-charcoal text-white px-5 py-2.5 border border-charcoal hover:bg-white hover:text-charcoal transition-premium shadow-sm"
+              className="text-xs font-bold uppercase tracking-widest bg-charcoal text-white px-5 py-2.5 border border-charcoal hover:bg-cream hover:text-charcoal transition-premium shadow-sm rounded-none"
             >
               Join Community
             </a>
@@ -204,15 +203,15 @@ export default function Home() {
       </header>
 
       {/* 2. HERO SECTION */}
-      <section className="relative w-full overflow-hidden pt-12 md:pt-20 pb-28 border-b border-border-light grid-pattern">
+      <section className="relative w-full overflow-hidden pt-16 md:pt-24 pb-28 border-b border-border-light grid-pattern">
         {/* Subtle grid fade */}
         <div className="absolute inset-0 radial-fade pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
           {/* Tagline Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 border border-border-light bg-white/80 rounded-full text-xs font-bold text-secondary mb-6 tracking-wider shadow-sm uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-accent-red" />
-            <span>India's Trusted Professional Network</span>
+            <Shield className="w-3.5 h-3.5 text-accent-red" />
+            <span>A trusted network built by practitioners for practitioners</span>
           </div>
 
           {/* Headline */}
@@ -221,8 +220,8 @@ export default function Home() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-secondary text-center max-w-2xl mt-6 font-normal leading-relaxed">
-          Connect with Chartered Accountants, Company Secretaries, Legal Advisors and Compliance Professionals. Participate in discussions, access expert insights and stay ahead of regulatory developments.
+          <p className="text-base md:text-lg text-secondary text-center max-w-3xl mt-6 font-normal leading-relaxed">
+            Connect with verified Chartered Accountants, Company Secretaries, Corporate Lawyers, and Regulatory Officers. Collaborate on technical clarifications, resolve compliance hurdles, and share peer intelligence.
           </p>
 
           {/* Actions */}
@@ -243,14 +242,14 @@ export default function Home() {
           </div>
 
           {/* INTERACTIVE COMMUNITY FEED DASHBOARD MOCKUP */}
-          <div className="w-full max-w-5xl mt-16 border border-border-light bg-white shadow-2xl relative">
-            {/* Top Chrome window bar */}
-            <div className="h-12 border-b border-border-light px-4 flex items-center justify-between bg-gray-50/50">
+          <div id="forum" className="w-full max-w-5xl mt-20 border border-border-light bg-white shadow-2xl relative rounded-none">
+            {/* Top window bar */}
+            <div className="h-14 border-b border-border-light px-4 flex items-center justify-between bg-cream">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                <span className="text-xs font-semibold text-secondary ml-4 tracking-wider">app.apexledger.in/community</span>
+                <div className="w-3 h-3 rounded-full bg-neutral-300"></div>
+                <div className="w-3 h-3 rounded-full bg-neutral-300"></div>
+                <div className="w-3 h-3 rounded-full bg-neutral-300"></div>
+                <span className="text-[11px] font-semibold text-secondary ml-4 tracking-wider font-mono">apexforum.in/advisory-feed</span>
               </div>
               <div className="relative max-w-xs w-48 sm:w-64">
                 <Search className="w-3.5 h-3.5 text-secondary absolute left-3 top-1/2 -translate-y-1/2" />
@@ -258,7 +257,7 @@ export default function Home() {
                   type="text" 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Filter queries..." 
+                  placeholder="Search compliance issues..." 
                   className="w-full h-8 pl-9 pr-3 text-xs border border-border-light focus:outline-none focus:border-charcoal bg-white transition-colors"
                 />
               </div>
@@ -298,20 +297,20 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-border-light">
-                  <span className="text-[10px] font-bold text-secondary tracking-widest uppercase block mb-3">Live Network</span>
+                <div className="mt-8 pt-6 border-t border-border-light">
+                  <span className="text-[9px] font-bold text-secondary tracking-widest uppercase block mb-3">Live Practitioners</span>
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-                      <span className="text-xs font-semibold text-charcoal">CA Arvind R. <span className="text-secondary font-normal">(Direct Tax)</span></span>
+                      <div className="w-2 h-2 rounded-full bg-emerald-600"></div>
+                      <span className="text-xs font-bold text-charcoal">CA Arvind R. <span className="text-secondary font-normal font-serif italic">(Direct Tax)</span></span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-                      <span className="text-xs font-semibold text-charcoal">CS Priyal S. <span className="text-secondary font-normal">(Corporate Compliance)</span></span>
+                      <div className="w-2 h-2 rounded-full bg-emerald-600"></div>
+                      <span className="text-xs font-bold text-charcoal">CS Priyal S. <span className="text-secondary font-normal font-serif italic">(Companies Act)</span></span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
-                      <span className="text-xs font-semibold text-charcoal">Adv. Neha M. <span className="text-secondary font-normal">(Corporate Law)</span></span>
+                      <div className="w-2 h-2 rounded-full bg-amber-600"></div>
+                      <span className="text-xs font-bold text-charcoal">Adv. Neha M. <span className="text-secondary font-normal font-serif italic">(Corporate Law)</span></span>
                     </div>
                   </div>
                 </div>
@@ -322,24 +321,24 @@ export default function Home() {
                 <div className="space-y-6">
                   {/* Category Header */}
                   <div className="flex items-center justify-between pb-3 border-b border-border-light">
-                    <h3 className="text-sm font-extrabold uppercase tracking-wider text-charcoal flex items-center gap-1.5">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-charcoal flex items-center gap-1.5">
                       <span>{selectedCategory} discussions</span>
-                      <span className="text-xs text-secondary font-semibold">({filteredDiscussions.length})</span>
+                      <span className="text-[11px] text-secondary font-normal">({filteredDiscussions.length})</span>
                     </h3>
-                    <span className="text-xs text-secondary">Updated real-time</span>
+                    <span className="text-[10px] text-secondary font-semibold uppercase tracking-wider">SECURE ADVISORY CHANNEL</span>
                   </div>
 
                   {/* Feed Items */}
                   {filteredDiscussions.length > 0 ? (
                     filteredDiscussions.map((disc) => (
-                      <div key={disc.id} className="group border border-border-light p-4 hover:border-charcoal transition-premium relative bg-white">
+                      <div key={disc.id} className="group border border-border-light p-5 hover:border-charcoal transition-premium relative bg-white rounded-none">
                         <div className="flex items-start justify-between gap-4">
                           <div>
                             {/* Author Metadata */}
-                            <div className="flex items-center gap-2 text-xs text-secondary font-semibold mb-2">
+                            <div className="flex items-center gap-2 text-[11px] text-secondary font-semibold mb-2">
                               <span className="text-charcoal font-bold">{disc.author}</span>
                               <span>•</span>
-                              <span>{disc.role}</span>
+                              <span className="font-serif italic">{disc.role}</span>
                               <span>•</span>
                               <span>{disc.time}</span>
                             </div>
@@ -356,7 +355,7 @@ export default function Home() {
 
                             {/* Tags & Actions */}
                             <div className="flex flex-wrap items-center gap-3">
-                              <span className="text-[10px] font-bold text-accent-red border border-red-200 bg-red-50/50 px-2.5 py-0.5 uppercase tracking-wider">
+                              <span className="text-[9px] font-bold text-accent-red border border-accent-red/20 bg-accent-red/5 px-2.5 py-0.5 uppercase tracking-wider rounded-none">
                                 {disc.tag}
                               </span>
                               <span className="text-[10px] font-semibold text-secondary">
@@ -371,23 +370,23 @@ export default function Home() {
                           {/* Quick Interactive Like Button */}
                           <button 
                             onClick={() => toggleLike(disc.id)}
-                            className={`p-2 border transition-colors ${
+                            className={`p-2 border rounded-none transition-colors ${
                               likedDiscussions[disc.id] 
-                                ? "bg-red-50 border-red-200 text-accent-red" 
+                                ? "bg-red-50/50 border-red-200 text-accent-red" 
                                 : "border-border-light text-secondary hover:border-charcoal hover:text-charcoal"
                             }`}
-                            title="Save Discussion"
+                            title="Bookmark Thread"
                           >
                             <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                              <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
                             </svg>
                           </button>
                         </div>
 
                         {/* Interactive replies feature in mockup */}
                         {dashboardMessages[disc.id] && dashboardMessages[disc.id].map((msg, i) => (
-                          <div key={i} className="mt-3 pl-4 border-l-2 border-accent-red bg-gray-50 py-2 pr-2 text-xs flex flex-col gap-1">
-                            <span className="font-bold text-[10px] text-charcoal">You (Verification Pending) • Just now</span>
+                          <div key={i} className="mt-3 pl-4 border-l-2 border-accent-red bg-cream/50 py-2.5 pr-2 text-xs flex flex-col gap-1">
+                            <span className="font-bold text-[9px] text-charcoal">You (Verification Pending) • Just now</span>
                             <span className="text-secondary">{msg}</span>
                           </div>
                         ))}
@@ -402,11 +401,11 @@ export default function Home() {
                             onKeyDown={(e) => {
                               if (e.key === "Enter") handleSendMessage(disc.id);
                             }}
-                            className="w-full text-xs py-1 px-2.5 border border-border-light focus:outline-none focus:border-charcoal"
+                            className="w-full text-xs py-2 px-3 border border-border-light focus:outline-none focus:border-charcoal rounded-none"
                           />
                           <button 
                             onClick={() => handleSendMessage(disc.id)}
-                            className="p-1 text-secondary hover:text-accent-red transition-colors"
+                            className="p-2 border border-charcoal bg-charcoal text-white hover:bg-white hover:text-charcoal transition-colors rounded-none"
                           >
                             <Send className="w-4 h-4" />
                           </button>
@@ -415,13 +414,13 @@ export default function Home() {
                     ))
                   ) : (
                     <div className="text-center py-16 border border-dashed border-border-light">
-                      <span className="text-secondary text-sm font-semibold">No discussions found. Try searching for GST, Corporate Law, FEMA, Compliance or Direct Tax.</span>
+                      <span className="text-secondary text-xs font-semibold">No active threads in this category. Try searching for &quot;FEMA&quot;, &quot;LODR&quot;, or &quot;Companies Act&quot;.</span>
                     </div>
                   )}
                 </div>
 
                 <div className="mt-8 text-center pt-4 border-t border-border-light/80">
-                  <a href="#contact" className="inline-flex items-center gap-2 text-xs font-bold text-charcoal hover:text-accent-red transition-colors uppercase tracking-wider">
+                  <a href="#contact" className="inline-flex items-center gap-2 text-xs font-bold text-charcoal hover:text-accent-red transition-colors uppercase tracking-widest">
                     <span>Access 50,000+ expert discussions, legal insights and compliance resources</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
@@ -475,243 +474,249 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. FEATURES GRID SECTION */}
-      <section id="features" className="w-full py-28 border-b border-border-light bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          
-          <div className="max-w-2xl mb-16">
-            <span className="text-xs font-bold text-accent-red uppercase tracking-widest">Engineered for Finance Minds</span>
-            <h2 className="text-3xl md:text-4xl font-light text-charcoal tracking-tight mt-3">
-              One unified network for peer-to-peer advisory and advisory intelligence.
-            </h2>
+{/* FEATURES GRID SECTION */}
+{/* FEATURES GRID SECTION */}
+<section id="features" className="w-full py-24 border-b border-border-light bg-white">
+  <div className="max-w-7xl mx-auto px-6">
+
+    {/* Header */}
+    <div className="max-w-2xl mb-16">
+      <span className="text-xs font-bold text-accent-red uppercase tracking-widest">
+        Built for CA, CS & Legal Practitioners
+      </span>
+      <h2 className="text-3xl md:text-4xl font-light text-charcoal tracking-tight mt-3">
+        A unified workspace for compliance, advisory, and peer validation.
+      </h2>
+    </div>
+
+    {/* First Row */}
+    <div className="grid grid-cols-1 md:grid-cols-3 border border-border-light divide-y md:divide-y-0 md:divide-x divide-border-light">
+      
+      {/* Feature 1 */}
+      <div className="p-8 hover:bg-gray-50 transition flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
+            <MessageSquare className="w-5 h-5 text-accent-red" />
           </div>
+          <h3 className="text-lg font-bold text-charcoal mb-2">Professional Forums</h3>
+          <p className="text-sm text-secondary leading-relaxed">
+            Collaborate on direct tax, FEMA, litigation, and company law matters in indexed, secure channels.
+          </p>
+        </div>
+        <a href="#forum" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red">
+          <span>View channels</span>
+          <ChevronRight className="w-3 h-3" />
+        </a>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 border border-border-light divide-y md:divide-y-0 md:divide-x divide-border-light">
-            
-            {/* Feature 1 */}
-            <div className="p-8 hover:bg-gray-50/50 transition-premium flex flex-col justify-between min-h-[260px]">
-              <div>
-                <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
-                  <MessageSquare className="w-5 h-5 text-accent-red" />
-                </div>
-                <h3 className="text-lg font-bold text-charcoal mb-2">Discussion Forum</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Collaborate on complex tax audit, company law, and regulatory matters. Access search-indexed discussions categorized by compliance domains.
-                </p>
-              </div>
-              <a href="#contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red transition-colors">
-                <span>Explore threads</span>
-                <ChevronRight className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="p-8 hover:bg-gray-50/50 transition-premium flex flex-col justify-between min-h-[260px]">
-              <div>
-                <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
-                  <BookOpen className="w-5 h-5 text-accent-red" />
-                </div>
-                <h3 className="text-lg font-bold text-charcoal mb-2">Expert Publications</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Deep-dive technical articles written by certified professionals. Straight to the point, analyzing amendments, case laws, and tax rules.
-                </p>
-              </div>
-              <a href="#publications" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red transition-colors">
-                <span>Read journals</span>
-                <ChevronRight className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="p-8 hover:bg-gray-50/50 transition-premium flex flex-col justify-between min-h-[260px]">
-              <div>
-                <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
-                  <Users className="w-5 h-5 text-accent-red" />
-                </div>
-                <h3 className="text-lg font-bold text-charcoal mb-2">Professional Network</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Find and connect with fellow practitioners, cost accountants, and secretarial experts nationwide. Filter by experience level and location.
-                </p>
-              </div>
-              <a href="#contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red transition-colors">
-                <span>Browse directory</span>
-                <ChevronRight className="w-3 h-3" />
-              </a>
-            </div>
-
+      {/* Feature 2 */}
+      <div className="p-8 hover:bg-gray-50 transition flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
+            <Bell className="w-5 h-5 text-accent-red" />
           </div>
+          <h3 className="text-lg font-bold text-charcoal mb-2">Regulatory Updates</h3>
+          <p className="text-sm text-secondary leading-relaxed">
+            Consolidated feed mapping MCA circulars, CBDT/CBIC tax notifications, SEBI decisions, and RBI directions.
+          </p>
+        </div>
+        <a href="#updates" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red">
+          <span>Configure alerts</span>
+          <ChevronRight className="w-3 h-3" />
+        </a>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 border-x border-b border-border-light divide-y md:divide-y-0 md:divide-x divide-border-light">
-            
-            {/* Feature 4 */}
-            <div className="p-8 hover:bg-gray-50/50 transition-premium flex flex-col justify-between min-h-[260px]">
-              <div>
-                <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
-                  <Bell className="w-5 h-5 text-accent-red" />
-                </div>
-                <h3 className="text-lg font-bold text-charcoal mb-2">Regulatory Feed</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Consolidated feed mapping MCA, CBDT, CBIC, SEBI, and RBI notifications. Curated alerts showing immediate impact summaries on key filings.
-                </p>
-              </div>
-              <a href="#contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red transition-colors">
-                <span>View live feed</span>
-                <ChevronRight className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* Feature 5 */}
-            <div className="p-8 hover:bg-gray-50/50 transition-premium flex flex-col justify-between min-h-[260px]">
-              <div>
-                <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
-                  <Briefcase className="w-5 h-5 text-accent-red" />
-                </div>
-                <h3 className="text-lg font-bold text-charcoal mb-2">Job Opportunities</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Exclusive placements in corporate governance, taxation, cost valuation, and audit. Direct applications to Big 4 and corporate houses.
-                </p>
-              </div>
-              <a href="#contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red transition-colors">
-                <span>Browse jobs</span>
-                <ChevronRight className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* Feature 6 */}
-            <div className="p-8 hover:bg-gray-50/50 transition-premium flex flex-col justify-between min-h-[260px]">
-              <div>
-                <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
-                  <Share2 className="w-5 h-5 text-accent-red" />
-                </div>
-                <h3 className="text-lg font-bold text-charcoal mb-2">Knowledge Vault</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Share, download, and review standard audit programs, secretarial checklists, draft resolutions, and presentation slides verified by panels.
-                </p>
-              </div>
-              <a href="#contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red transition-colors">
-                <span>Access vault</span>
-                <ChevronRight className="w-3 h-3" />
-              </a>
-            </div>
-
+      {/* Feature 3 */}
+      <div className="p-8 hover:bg-gray-50 transition flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
+            <BookOpen className="w-5 h-5 text-accent-red" />
           </div>
+          <h3 className="text-lg font-bold text-charcoal mb-2">Expert Publications</h3>
+          <p className="text-sm text-secondary leading-relaxed">
+            Technical journals and articles by practicing advocates and senior partners with actionable insights.
+          </p>
+        </div>
+        <a href="#publications" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red">
+          <span>Read papers</span>
+          <ChevronRight className="w-3 h-3" />
+        </a>
+      </div>
+    </div>
 
+    {/* Second Row */}
+    <div className="grid grid-cols-1 md:grid-cols-3 border-x border-b border-border-light divide-y md:divide-y-0 md:divide-x divide-border-light">
+      
+      {/* Feature 4 */}
+      <div className="p-8 hover:bg-gray-50 transition flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
+            <Share2 className="w-5 h-5 text-accent-red" />
+          </div>
+          <h3 className="text-lg font-bold text-charcoal mb-2">Corporate Law Resources</h3>
+          <p className="text-sm text-secondary leading-relaxed">
+            Repository of vetted resolutions, JV contracts, audit checklists, and M&A scheme filings.
+          </p>
+        </div>
+        <a href="#resources" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red">
+          <span>Browse resources</span>
+          <ChevronRight className="w-3 h-3" />
+        </a>
+      </div>
+
+      {/* Feature 5 */}
+      <div className="p-8 hover:bg-gray-50 transition flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
+            <Award className="w-5 h-5 text-accent-red" />
+          </div>
+          <h3 className="text-lg font-bold text-charcoal mb-2">Compliance Hub</h3>
+          <p className="text-sm text-secondary leading-relaxed">
+            Interactive checklists mapping SEBI LODR declarations, MCA returns, and secretarial audit workflows.
+          </p>
+        </div>
+        <a href="#compliance" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red">
+          <span>View checklists</span>
+          <ChevronRight className="w-3 h-3" />
+        </a>
+      </div>
+
+      {/* Feature 6 */}
+      <div className="p-8 hover:bg-gray-50 transition flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div className="w-10 h-10 border border-border-light flex items-center justify-center text-charcoal mb-6 bg-white">
+            <Users className="w-5 h-5 text-accent-red" />
+          </div>
+          <h3 className="text-lg font-bold text-charcoal mb-2">Verified Network</h3>
+          <p className="text-sm text-secondary leading-relaxed">
+            Connect with attorneys, governance experts, and partners across industries. Searchable by enrollment or MRN.
+          </p>
+        </div>
+        <a href="#directory" className="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal mt-6 uppercase tracking-wider hover:text-accent-red">
+          <span>Open directory</span>
+          <ChevronRight className="w-3 h-3" />
+        </a>
+      </div>
+    </div>
         </div>
       </section>
 
-      {/* 5. RECENT ARTICLES SECTION */}
-      <section id="publications" className="w-full py-28 border-b border-border-light bg-gray-50/25">
-        <div className="max-w-7xl mx-auto px-6">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-            <div className="max-w-xl">
-              <span className="text-xs font-bold text-accent-red uppercase tracking-widest">Technical Publications</span>
-              <h2 className="text-3xl md:text-4xl font-light text-charcoal tracking-tight mt-3">
-                Peer-reviewed analysis on complex statutory amendments.
-              </h2>
-            </div>
-            <a 
-              href="#contact" 
-              className="font-bold text-sm text-charcoal border-b-2 border-charcoal hover:border-accent-red hover:text-accent-red pb-1 flex items-center gap-1.5 self-start md:self-auto transition-colors"
-            >
-              <span>Explore all publications</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
+{/* 5. RECENT ARTICLES SECTION */}
+<section id="publications" className="w-full py-28 border-b border-border-light bg-cream/10">
+  <div className="max-w-7xl mx-auto px-6">
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Article 1 */}
-            <article className="bg-white border border-border-light hover:border-charcoal transition-premium flex flex-col justify-between">
-              <div className="p-8">
-                <span className="text-[10px] font-bold text-accent-red border border-red-200 bg-red-50/50 px-2 py-0.5 uppercase tracking-wider block w-fit mb-6">
-                  INCOME TAX ACT
-                </span>
-                <h3 className="text-xl font-bold text-charcoal mb-3 leading-snug">
-                  Deciphering Section 43B(h) of the Income Tax Act: Impact on Micro and Small Enterprises Payments
-                </h3>
-                <p className="text-xs text-secondary leading-relaxed mb-6 line-clamp-3">
-                  The introduction of clause (h) in Section 43B has sent waves across MSMEs and corporate buyers. We break down the absolute deadline criteria, the definitions of enterprises, and tax audit reporting requirements.
-                </p>
-              </div>
-              <div className="px-8 py-4 bg-gray-50/50 border-t border-border-light flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-charcoal">CA Meera Sharma</span>
-                  <span className="text-[10px] text-secondary">Partner, Sharma & Co.</span>
-                </div>
-                <span className="text-[10px] font-semibold text-secondary">8 Min Read</span>
-              </div>
-            </article>
+    {/* Header */}
+    <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div className="max-w-xl">
+        <span className="text-xs font-bold text-accent-red uppercase tracking-widest">
+          Technical Publications
+        </span>
+        <h2 className="text-3xl md:text-4xl font-light text-charcoal tracking-tight mt-3">
+          Peer-reviewed analyses on statutory, tax & corporate law changes.
+        </h2>
+      </div>
+      <a
+        href="#contact"
+        className="font-bold text-xs uppercase tracking-wider text-charcoal border-b border-charcoal hover:border-accent-red hover:text-accent-red pb-1 flex items-center gap-1.5 self-start md:self-auto transition-colors"
+      >
+        <span>View all publications</span>
+        <ArrowUpRight className="w-4 h-4" />
+      </a>
+    </div>
 
-            {/* Article 2 */}
-            <article className="bg-white border border-border-light hover:border-charcoal transition-premium flex flex-col justify-between">
-              <div className="p-8">
-                <span className="text-[10px] font-bold text-accent-red border border-red-200 bg-red-50/50 px-2 py-0.5 uppercase tracking-wider block w-fit mb-6">
-                  CORPORATE LAW
-                </span>
-                <h3 className="text-xl font-bold text-charcoal mb-3 leading-snug">
-                  SBO Rules under Companies Act, 2013: A Practical Compliance Checklist for Filings
-                </h3>
-                <p className="text-xs text-secondary leading-relaxed mb-6 line-clamp-3">
-                  Identifying Significant Beneficial Owners (SBO) remains a corporate challenge. This article provides a structured flow diagram and compliance check-list to verify reporting correctness under Section 90 of Companies Act.
-                </p>
-              </div>
-              <div className="px-8 py-4 bg-gray-50/50 border-t border-border-light flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-charcoal">CS Vikram Sen</span>
-                  <span className="text-[10px] text-secondary">Compliance Head, Apex Group</span>
-                </div>
-                <span className="text-[10px] font-semibold text-secondary">12 Min Read</span>
-              </div>
-            </article>
+    {/* Articles Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {/* Article 3 */}
-            <article className="bg-white border border-border-light hover:border-charcoal transition-premium flex flex-col justify-between">
-              <div className="p-8">
-                <span className="text-[10px] font-bold text-accent-red border border-red-200 bg-red-50/50 px-2 py-0.5 uppercase tracking-wider block w-fit mb-6">
-                  COST ACCOUNTING
-                </span>
-                <h3 className="text-xl font-bold text-charcoal mb-3 leading-snug">
-                  Cost Audit Rules: Mandatory Annexures and Reconciliation Strategy for FY 2025-26
-                </h3>
-                <p className="text-xs text-secondary leading-relaxed mb-6 line-clamp-3">
-                  An outline of key reconciliation formats required for CRA-3 reporting, focusing on material cost allocations and overhead absorption rates. Learn to avoid common audit revision notices.
-                </p>
-              </div>
-              <div className="px-8 py-4 bg-gray-50/50 border-t border-border-light flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-charcoal">CMA Rajesh Kumar</span>
-                  <span className="text-[10px] text-secondary">Practicing Cost Auditor</span>
-                </div>
-                <span className="text-[10px] font-semibold text-secondary">10 Min Read</span>
-              </div>
-            </article>
-
-          </div>
-
+      {/* Article 1 */}
+      <article className="bg-white border border-border-light hover:border-charcoal transition flex flex-col justify-between shadow-sm">
+        <div className="p-8">
+          <span className="text-[9px] font-bold text-accent-red border border-accent-red/20 bg-accent-red/5 px-2 py-0.5 uppercase tracking-wider block w-fit mb-6">
+            INCOME TAX ACT
+          </span>
+          <h3 className="text-xl font-bold text-charcoal mb-3 leading-snug">
+            Section 43B(h): Impact on MSME Payment Compliance
+          </h3>
+          <p className="text-xs text-secondary leading-relaxed mb-6 line-clamp-3">
+            Clause (h) in Section 43B has reshaped MSME payment timelines. This article decodes deadlines, enterprise definitions, and audit reporting requirements.
+          </p>
         </div>
-      </section>
+        <div className="px-8 py-4 bg-cream/30 border-t border-border-light flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-xs font-bold text-charcoal">CA Meera Sharma</span>
+            <span className="text-[10px] text-secondary italic">Partner, Sharma & Co.</span>
+          </div>
+          <span className="text-[10px] font-semibold text-secondary">8 Min Read</span>
+        </div>
+      </article>
+
+      {/* Article 2 */}
+      <article className="bg-white border border-border-light hover:border-charcoal transition flex flex-col justify-between shadow-sm">
+        <div className="p-8">
+          <span className="text-[9px] font-bold text-accent-red border border-accent-red/20 bg-accent-red/5 px-2 py-0.5 uppercase tracking-wider block w-fit mb-6">
+            COMPANIES ACT
+          </span>
+          <h3 className="text-xl font-bold text-charcoal mb-3 leading-snug">
+            SBO Rules: Compliance Checklist under Section 90
+          </h3>
+          <p className="text-xs text-secondary leading-relaxed mb-6 line-clamp-3">
+            Identifying Significant Beneficial Owners remains complex. This guide provides structured checklists and flow diagrams for accurate BEN-2 filings.
+          </p>
+        </div>
+        <div className="px-8 py-4 bg-cream/30 border-t border-border-light flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-xs font-bold text-charcoal">CS Vikram Sen</span>
+            <span className="text-[10px] text-secondary italic">Compliance Head, Apex Group</span>
+          </div>
+          <span className="text-[10px] font-semibold text-secondary">12 Min Read</span>
+        </div>
+      </article>
+
+      {/* Article 3 */}
+      <article className="bg-white border border-border-light hover:border-charcoal transition flex flex-col justify-between shadow-sm">
+        <div className="p-8">
+          <span className="text-[9px] font-bold text-accent-red border border-accent-red/20 bg-accent-red/5 px-2 py-0.5 uppercase tracking-wider block w-fit mb-6">
+            COST ACCOUNTING
+          </span>
+          <h3 className="text-xl font-bold text-charcoal mb-3 leading-snug">
+            Cost Audit Rules: Annexures & Reconciliation Strategy FY 2025-26
+          </h3>
+          <p className="text-xs text-secondary leading-relaxed mb-6 line-clamp-3">
+            Key reconciliation formats for CRA-3 reporting, focusing on material cost allocations and overhead absorption. Avoid common audit revision pitfalls.
+          </p>
+        </div>
+        <div className="px-8 py-4 bg-cream/30 border-t border-border-light flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-xs font-bold text-charcoal">CMA Rajesh Kumar</span>
+            <span className="text-[10px] text-secondary italic">Practicing Cost Auditor</span>
+          </div>
+          <span className="text-[10px] font-semibold text-secondary">10 Min Read</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
       {/* 6. TRENDING DISCUSSIONS SECTION */}
       <section id="trending" className="w-full py-28 border-b border-border-light bg-white">
         <div className="max-w-7xl mx-auto px-6">
           
           <div className="max-w-xl mb-16">
-            <span className="text-xs font-bold text-accent-red uppercase tracking-widest">Live Forum Activity</span>
+            <span className="text-xs font-bold text-accent-red uppercase tracking-widest">Active boardroom queries</span>
             <h2 className="text-3xl md:text-4xl font-light text-charcoal tracking-tight mt-3">
-              Trending questions currently resolving on the platform.
+              Regulatory and litigation queries currently resolving.
             </h2>
           </div>
 
           <div className="border border-border-light divide-y divide-border-light">
             
             {/* Thread 1 */}
-            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/30 transition-premium">
+            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-cream/15 transition-premium">
               <div className="flex items-start gap-4">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2.5 shrink-0"></div>
+                <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full mt-2.5 shrink-0"></div>
                 <div>
-                  <h3 className="text-base font-bold text-charcoal hover:text-accent-red transition-colors cursor-pointer">
-                    Is anyone else facing GST Portal error "Access Denied" while logging into SEZ Developer profile?
+                  <h3 className="text-base font-bold text-charcoal hover:text-accent-red transition-colors cursor-pointer ">
+                    GST Portal error &apos;Access Denied&apos; while logging into SEZ Developer profile: Temporary workarounds
                   </h3>
                   <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-secondary font-semibold">
                     <span className="text-accent-red font-bold">GST & INDIRECT TAX</span>
@@ -729,15 +734,15 @@ export default function Home() {
             </div>
 
             {/* Thread 2 */}
-            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/30 transition-premium">
+            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-cream/15 transition-premium">
               <div className="flex items-start gap-4">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2.5 shrink-0"></div>
+                <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full mt-2.5 shrink-0"></div>
                 <div>
                   <h3 className="text-base font-bold text-charcoal hover:text-accent-red transition-colors cursor-pointer">
-                    Interpretation of "Related Party Transaction" definition under Listing Regulations vs. Companies Act
+                    Interpretation of &apos;Related Party Transaction&apos; definition under SEBI LODR vs. Companies Act Section 188
                   </h3>
                   <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-secondary font-semibold">
-                    <span className="text-accent-red font-bold">CORPORATE LAW</span>
+                    <span className="text-accent-red font-bold">CORPORATE COMPLIANCE</span>
                     <span>•</span>
                     <span>Started by CS Rohan Dsouza</span>
                     <span>•</span>
@@ -752,17 +757,17 @@ export default function Home() {
             </div>
 
             {/* Thread 3 */}
-            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/30 transition-premium">
+            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-cream/15 transition-premium">
               <div className="flex items-start gap-4">
-                <div className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2.5 shrink-0"></div>
+                <div className="w-1.5 h-1.5 bg-neutral-400 rounded-full mt-2.5 shrink-0"></div>
                 <div>
                   <h3 className="text-base font-bold text-charcoal hover:text-accent-red transition-colors cursor-pointer">
-                    Transition of deferred tax assets from old regime to new regime under Ind AS 12 rules
+                    Securing RBI approvals for write-off of overseas investments under FEMA Rules
                   </h3>
                   <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-secondary font-semibold">
-                    <span className="text-accent-red font-bold">ACCOUNTING STANDARDS</span>
+                    <span className="text-accent-red font-bold">FEMA & RBI</span>
                     <span>•</span>
-                    <span>Started by CA Amit Patel</span>
+                    <span>Started by Adv. Neha Mukherji</span>
                     <span>•</span>
                     <span>1d ago</span>
                   </div>
@@ -775,25 +780,25 @@ export default function Home() {
             </div>
 
             {/* Thread 4 */}
-            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/30 transition-premium">
+            <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-cream/15 transition-premium">
               <div className="flex items-start gap-4">
-                <div className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2.5 shrink-0"></div>
+                <div className="w-1.5 h-1.5 bg-neutral-400 rounded-full mt-2.5 shrink-0"></div>
                 <div>
                   <h3 className="text-base font-bold text-charcoal hover:text-accent-red transition-colors cursor-pointer">
-                    CMA certification requirements for bank credit audits: Recent RBI circular discussion
+                    Challenges in drafting dispute resolution clauses post Supreme Court rulings on unilateral arbitrator appointments
                   </h3>
                   <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-secondary font-semibold">
-                    <span className="text-accent-red font-bold">BANKING & FINANCE</span>
+                    <span className="text-accent-red font-bold">CORPORATE LITIGATION</span>
                     <span>•</span>
-                    <span>Started by CMA Nalin Mehta</span>
+                    <span>Started by Adv. Nalin Mehta</span>
                     <span>•</span>
                     <span>3d ago</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-6 self-end sm:self-auto text-xs font-semibold text-secondary shrink-0">
-                <span>6 Replies</span>
-                <span>94 Views</span>
+                <span>14 Replies</span>
+                <span>215 Views</span>
               </div>
             </div>
 
@@ -803,56 +808,56 @@ export default function Home() {
       </section>
 
       {/* 7. MOBILE APP SHOWCASE */}
-      <section id="showcase" className="w-full py-28 border-b border-border-light bg-gray-50/30 overflow-hidden">
+      <section id="showcase" className="w-full py-28 border-b border-border-light bg-cream/25 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Left text panel */}
             <div>
-              <span className="text-xs font-bold text-accent-red uppercase tracking-widest">Apex Ledger Mobile</span>
-              <h2 className="text-4xl md:text-5xl font-light text-charcoal tracking-tight mt-4 leading-tight">
-                A premium professional network in your pocket.
+              <span className="text-xs font-bold text-accent-red uppercase tracking-widest">Apex Forum Mobile</span>
+              <h2 className="text-4xl md:text-5xl font-light text-charcoal tracking-tight mt-4 leading-tight ">
+                A secure, verified network in your pocket.
               </h2>
-              <p className="text-base text-secondary mt-6 leading-relaxed">
-                Connect and consult securely. The Apex Ledger app allows verified members to chat, coordinate in regional chapters, and receive push notifications on statutory circulars.
+              <p className="text-sm text-secondary mt-6 leading-relaxed">
+                Consult and coordinate securely on the move. The Apex Forum mobile app allows verified practitioners to access private discussion boards, verify compliance updates, and chat with peers.
               </p>
 
               <div className="space-y-4 mt-8">
                 <div className="flex items-start gap-3">
-                  <div className="p-1.5 bg-white border border-border-light text-accent-red mt-1">
+                  <div className="p-1.5 bg-white border border-border-light text-accent-red mt-1 rounded-none">
                     <Lock className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-charcoal">Encrypted Communication</h4>
-                    <p className="text-xs text-secondary mt-0.5">Peer-to-peer secure messaging for sensitive professional consultations.</p>
+                    <h4 className="text-sm font-bold text-charcoal">Encrypted Consultations</h4>
+                    <p className="text-xs text-secondary mt-0.5">Secure, peer-to-peer professional advisory messages protected by credential keys.</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="p-1.5 bg-white border border-border-light text-accent-red mt-1">
+                  <div className="p-1.5 bg-white border border-border-light text-accent-red mt-1 rounded-none">
                     <Award className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-charcoal">Instant Circular Alerts</h4>
-                    <p className="text-xs text-secondary mt-0.5">Summaries of notifications from ICAI, ICSI, MCA and CBDT pushed immediately.</p>
+                    <h4 className="text-sm font-bold text-charcoal">Statutory Alerts Push</h4>
+                    <p className="text-xs text-secondary mt-0.5">Direct summaries of notifications from SEBI, RBI, MCA, CBDT, and CBIC pushed immediately.</p>
                   </div>
                 </div>
               </div>
 
-              {/* Store acquisition badges (Premium minimalist style) */}
+              {/* Store acquisition badges */}
               <div className="flex flex-wrap gap-4 mt-10">
-                <div className="cursor-pointer border border-charcoal bg-charcoal text-white hover:bg-white hover:text-charcoal px-5 py-2.5 flex items-center gap-3 transition-premium select-none">
+                <div className="cursor-pointer border border-charcoal bg-charcoal text-white hover:bg-white hover:text-charcoal px-5 py-2.5 flex items-center gap-3 transition-premium select-none rounded-none">
                   <Smartphone className="w-5 h-5 shrink-0" />
                   <div className="flex flex-col text-left">
-                    <span className="text-[9px] uppercase tracking-wider text-secondary leading-none">Download on the</span>
+                    <span className="text-[8px] uppercase tracking-wider text-secondary leading-none">Download on the</span>
                     <span className="text-xs font-bold leading-tight mt-0.5">App Store</span>
                   </div>
                 </div>
 
-                <div className="cursor-pointer border border-charcoal bg-charcoal text-white hover:bg-white hover:text-charcoal px-5 py-2.5 flex items-center gap-3 transition-premium select-none">
+                <div className="cursor-pointer border border-charcoal bg-charcoal text-white hover:bg-white hover:text-charcoal px-5 py-2.5 flex items-center gap-3 transition-premium select-none rounded-none">
                   <Smartphone className="w-5 h-5 shrink-0" />
                   <div className="flex flex-col text-left">
-                    <span className="text-[9px] uppercase tracking-wider text-secondary leading-none">Get it on</span>
+                    <span className="text-[8px] uppercase tracking-wider text-secondary leading-none">Get it on</span>
                     <span className="text-xs font-bold leading-tight mt-0.5">Google Play</span>
                   </div>
                 </div>
@@ -862,7 +867,7 @@ export default function Home() {
             {/* Right Phone Mockup Panel */}
             <div className="flex justify-center lg:justify-end">
               {/* Phone Frame container */}
-              <div className="w-[300px] h-[600px] border-[6px] border-charcoal rounded-[40px] bg-white relative overflow-hidden shadow-2xl shrink-0">
+              <div className="w-[300px] h-[600px] border-[6px] border-charcoal rounded-[36px] bg-white relative overflow-hidden shadow-2xl shrink-0">
                 
                 {/* Speaker Grill / Dynamic Island */}
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-4 bg-charcoal rounded-full z-20 flex items-center justify-center">
@@ -873,56 +878,56 @@ export default function Home() {
                 <div className="w-full h-full pt-9 flex flex-col justify-between bg-white text-charcoal z-10 relative">
                   
                   {/* Internal App Header */}
-                  <div className="px-4 py-3 border-b border-border-light flex items-center justify-between bg-gray-50/50">
+                  <div className="px-4 py-3 border-b border-border-light flex items-center justify-between bg-cream">
                     <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 border border-charcoal flex items-center justify-center font-bold text-[9px] bg-charcoal text-white">
+                      <div className="w-5 h-5 border border-charcoal flex items-center justify-center font-serif font-bold text-[9px] bg-charcoal text-white rounded-none">
                         A
                       </div>
-                      <span className="text-xs font-extrabold tracking-widest text-charcoal">APEX LEDGER</span>
+                      <span className="text-[10px] font-extrabold tracking-widest text-charcoal">APEX FORUM</span>
                     </div>
-                    <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-emerald-600"></div>
                   </div>
 
                   {/* App Message Feed */}
                   <div className="p-3 space-y-3 flex-1 overflow-y-auto max-h-[440px]">
-                    <div className="text-[10px] text-center text-secondary font-semibold my-2">
+                    <div className="text-[9px] text-center text-secondary font-semibold uppercase tracking-widest my-2">
                       Secured Direct Consultation
                     </div>
 
                     {/* Incoming Msg */}
                     <div className="flex flex-col gap-1 items-start max-w-[85%]">
-                      <div className="bg-gray-100 p-2.5 text-xs text-charcoal font-medium">
-                        Hi, regarding the cost auditing checklists for the pharmaceutical division, should we absorbed secondary packing as direct material?
+                      <div className="bg-neutral-100 p-2.5 text-xs text-charcoal rounded-none border border-border-light leading-relaxed">
+                        Hi, under the SEBI LODR rules, does the disclosure of a promoter group share pledge need to be submitted within 2 working days?
                       </div>
-                      <span className="text-[9px] text-secondary font-semibold pl-1">CMA Suresh N. • 3:12 PM</span>
+                      <span className="text-[8px] text-secondary font-semibold pl-1 font-serif italic">CS Suresh N. • 3:12 PM</span>
                     </div>
 
                     {/* Outgoing Msg */}
                     <div className="flex flex-col gap-1 items-end max-w-[85%] ml-auto">
-                      <div className="bg-accent-red text-white p-2.5 text-xs font-medium">
-                        As per CAS-4 standards, secondary packing should be treated as packaging cost under administrative overheads, not direct material, unless specifically contractually billable.
+                      <div className="bg-accent-red text-white p-2.5 text-xs rounded-none leading-relaxed">
+                        Yes, under Regulation 31 of SEBI LODR, any pledge creation, invocation, or release by promoters must be reported to the stock exchange within two working days of the transaction.
                       </div>
-                      <span className="text-[9px] text-secondary font-semibold pr-1">CA Arvind R. • 3:14 PM</span>
+                      <span className="text-[8px] text-secondary font-semibold pr-1 font-serif italic">CS Priyal S. • 3:14 PM</span>
                     </div>
 
                     {/* Incoming Msg 2 */}
                     <div className="flex flex-col gap-1 items-start max-w-[85%]">
-                      <div className="bg-gray-100 p-2.5 text-xs text-charcoal font-medium">
-                        Understood. That confirms my calculations. I will adjust the absorption rates in Form CRA-3. Thank you!
+                      <div className="bg-neutral-100 p-2.5 text-xs text-charcoal rounded-none border border-border-light leading-relaxed">
+                        Got it. That aligns with our board calendar. I will coordinate the filing. Thanks!
                       </div>
-                      <span className="text-[9px] text-secondary font-semibold pl-1">CMA Suresh N. • 3:15 PM</span>
+                      <span className="text-[8px] text-secondary font-semibold pl-1 font-serif italic">CS Suresh N. • 3:15 PM</span>
                     </div>
                   </div>
 
                   {/* App Input Area */}
-                  <div className="p-3 border-t border-border-light flex items-center gap-2 bg-gray-50/40">
+                  <div className="p-3 border-t border-border-light flex items-center gap-2 bg-cream">
                     <input 
                       type="text" 
                       placeholder="Type reply..." 
-                      className="w-full text-xs py-1.5 px-3 border border-border-light focus:outline-none focus:border-charcoal bg-white"
+                      className="w-full text-xs py-1.5 px-3 border border-border-light focus:outline-none focus:border-charcoal bg-white rounded-none"
                       disabled
                     />
-                    <div className="p-1.5 border border-charcoal bg-charcoal text-white shrink-0">
+                    <div className="p-1.5 border border-charcoal bg-charcoal text-white shrink-0 cursor-not-allowed">
                       <Send className="w-3.5 h-3.5" />
                     </div>
                   </div>
@@ -943,47 +948,47 @@ export default function Home() {
             
             {/* Trust and guidelines panel */}
             <div>
-              <span className="text-xs font-bold text-accent-red uppercase tracking-widest">Verification Standards</span>
+              <span className="text- font-bold text-accent-red uppercase tracking-widest">Verification Standards</span>
               <h2 className="text-4xl font-light text-charcoal tracking-tight mt-4">
                 Strict credentials validation to maintain professional integrity.
               </h2>
               <p className="text-sm text-secondary mt-6 leading-relaxed">
-                To keep our community high-value, spam-free and authoritative, we verify the credentials of every registering professional.
+                To keep our community high-value, spam-free and legally authoritative, we verify the credentials of every registering professional before granting access.
               </p>
 
               <div className="space-y-6 mt-8">
                 <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full border border-border-light flex items-center justify-center shrink-0 text-accent-red text-xs font-bold mt-1 bg-gray-50">
+                  <div className="w-6 h-6 rounded-none border border-border-light flex items-center justify-center shrink-0 text-accent-red text-xs font-bold mt-1 bg-cream">
                     1
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-charcoal">Membership Registration Number (MRN)</h4>
+                    <h4 className="text-sm font-bold text-charcoal">Professional Credentials Submission</h4>
                     <p className="text-xs text-secondary mt-1 leading-relaxed">
-                      All CA, CS, and CMA applicants must provide their official Membership Number or Certificate of Practice (COP) code.
+                      All CA, CS, and Legal applicants must provide their official Membership Number or Bar Council Enrollment Code.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full border border-border-light flex items-center justify-center shrink-0 text-accent-red text-xs font-bold mt-1 bg-gray-50">
+                  <div className="w-6 h-6 rounded-none border border-border-light flex items-center justify-center shrink-0 text-accent-red text-xs font-bold mt-1 bg-cream">
                     2
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-charcoal">Database Cross-Referencing</h4>
                     <p className="text-xs text-secondary mt-1 leading-relaxed">
-                      Registration inputs are cross-referenced with the public registries of the Institute of Chartered Accountants of India (ICAI), the Institute of Company Secretaries of India (ICSI), and the Institute of Cost Accountants of India (ICMAI).
+                      Registration inputs are cross-referenced with public registries of the Institute of Chartered Accountants of India (ICAI), the Institute of Company Secretaries of India (ICSI), and state Bar Councils.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full border border-border-light flex items-center justify-center shrink-0 text-accent-red text-xs font-bold mt-1 bg-gray-50">
+                  <div className="w-6 h-6 rounded-none border border-border-light flex items-center justify-center shrink-0 text-accent-red text-xs font-bold mt-1 bg-cream">
                     3
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-charcoal">Active COP Validation</h4>
+                    <h4 className="text-sm font-bold text-charcoal">Secure Account Provisioning</h4>
                     <p className="text-xs text-secondary mt-1 leading-relaxed">
-                      Practice areas are updated dynamically, categorizing members as either in practice (holding active COP) or in industry placement.
+                      Upon validation of credentials, a unique, encrypted profile invitation link is emailed to the applicant to activate their platform membership.
                     </p>
                   </div>
                 </div>
@@ -991,22 +996,56 @@ export default function Home() {
             </div>
 
             {/* Registration Form Panel */}
-            <div className="border border-border-light p-8 md:p-10 bg-gray-50/20">
-              <h3 className="text-lg font-bold text-charcoal mb-6">Request Access / Apply for Membership</h3>
+            <div className="border border-border-light p-8 md:p-10 bg-cream/15 relative rounded-none">
+              
+              {/* Lock and Shield Icons for trust */}
+              <div className="absolute top-4 right-4 flex items-center gap-2 text-[10px] font-bold text-secondary tracking-widest uppercase">
+                <Lock className="w-3.5 h-3.5 text-accent-red" />
+                <span className="hidden sm:inline">Secure Submission</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-charcoal font-serif mb-2">Verified Membership Application</h3>
+              <p className="text-xs text-secondary mb-6 leading-relaxed border-b border-border-light pb-4">
+                Access to discussions, publications, and professional networking is limited to verified professionals and approved members.
+              </p>
+
+              {/* Trust Indicators */}
+              <div className="grid grid-cols-3 gap-2 mb-6 border border-border-light bg-white p-3.5">
+                <div className="flex flex-col items-center text-center">
+                  <Shield className="w-4 h-4 text-emerald-600 mb-1" />
+                  <span className="text-[9px] font-bold text-charcoal uppercase tracking-wider">Secure Verification</span>
+                </div>
+                <div className="flex flex-col items-center text-center border-x border-border-light">
+                  <Lock className="w-4 h-4 text-accent-red mb-1" />
+                  <span className="text-[9px] font-bold text-charcoal uppercase tracking-wider">Protected Access</span>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 mb-1" />
+                  <span className="text-[9px] font-bold text-charcoal uppercase tracking-wider">Verified Profiles</span>
+                </div>
+              </div>
+
+              {/* Verification Warning Card */}
+              <div className="border-l-4 border-accent-red bg-white p-4 mb-6 shadow-sm flex items-start gap-3 rounded-none">
+                <Lock className="w-5 h-5 text-accent-red shrink-0 mt-0.5" />
+                <p className="text-[11px] text-secondary leading-relaxed font-semibold">
+                  To maintain the quality and credibility of discussions, professional memberships and credentials are verified before access is granted.
+                </p>
+              </div>
               
               {formSubmitted ? (
                 <div className="text-center py-16">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-4" />
-                  <h4 className="text-base font-bold text-charcoal mb-2">Membership Application Logged</h4>
+                  <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
+                  <h4 className="text-base font-bold text-charcoal mb-2 font-serif">Membership Application Logged</h4>
                   <p className="text-xs text-secondary max-w-sm mx-auto leading-relaxed">
-                    Thank you, {formData.name}. Our moderation panel is cross-referencing your MRN with the database registry. You will receive an invitation link on <strong>{formData.email}</strong> once verified.
+                    Thank you, {formData.name}. Our screening panel is cross-referencing your credentials with the database registry. You will receive an invitation link on <strong>{formData.email}</strong> once verified.
                   </p>
                   <button 
                     onClick={() => {
                       setFormSubmitted(false);
                       setFormData({ name: "", membershipNo: "", email: "", phone: "", consent: false });
                     }} 
-                    className="mt-6 text-xs font-bold text-accent-red border-b border-accent-red hover:text-charcoal hover:border-charcoal transition-colors"
+                    className="mt-6 text-xs font-bold text-accent-red border-b border-accent-red hover:text-charcoal hover:border-charcoal transition-colors uppercase tracking-widest"
                   >
                     Submit another response
                   </button>
@@ -1019,21 +1058,21 @@ export default function Home() {
                     <label className="text-[10px] font-bold text-secondary uppercase tracking-wider block mb-2">
                       Professional Qualification
                     </label>
-                    <div className="grid grid-cols-4 border border-border-light divide-x divide-border-light">
+                    <div className="grid grid-cols-4 border border-border-light divide-x divide-border-light bg-white">
                       {[
                         { key: "CA", label: "Chartered Accountant" },
                         { key: "CS", label: "Company Secretary" },
-                        { key: "CMA", label: "Cost Auditor" },
-                        { key: "Other", label: "Corporate Compliance" }
+                        { key: "Legal", label: "Legal Professional" },
+                        { key: "Other", label: "Compliance Officer" }
                       ].map((item) => (
                         <button
                           key={item.key}
                           type="button"
                           onClick={() => setProfessionalType(item.key)}
-                          className={`py-2 text-[10px] sm:text-xs font-bold transition-colors truncate px-1 ${
+                          className={`py-2.5 text-[10px] sm:text-xs font-bold transition-colors truncate px-1 rounded-none ${
                             professionalType === item.key 
                               ? "bg-charcoal text-white" 
-                              : "text-secondary hover:text-charcoal hover:bg-gray-50"
+                              : "text-secondary hover:text-charcoal hover:bg-cream"
                           }`}
                         >
                           {item.key}
@@ -1053,16 +1092,17 @@ export default function Home() {
                       placeholder="e.g. CA Meera Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                      className="w-full border border-border-light px-3.5 py-2 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors"
+                      className="w-full border border-border-light px-3.5 py-2.5 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors rounded-none"
                     />
                   </div>
 
+                  {/* Dynamic Credential Input Field */}
                   <div>
                     <label className="text-[10px] font-bold text-secondary uppercase tracking-wider block mb-1">
                       {professionalType === "CA" && "ICAI Membership Number (MRN)"}
                       {professionalType === "CS" && "ICSI Membership Number (FCS / ACS)"}
-                      {professionalType === "CMA" && "ICMAI Membership Number"}
-                      {professionalType === "Other" && "Membership Number / Corporate Designation"}
+                      {professionalType === "Legal" && "Bar Council Enrollment Number"}
+                      {professionalType === "Other" && "Designation & Professional Credentials"}
                     </label>
                     <input 
                       type="text" 
@@ -1070,11 +1110,11 @@ export default function Home() {
                       placeholder={
                         professionalType === "CA" ? "e.g. 123456" :
                         professionalType === "CS" ? "e.g. ACS-78901" :
-                        professionalType === "CMA" ? "e.g. 23456" : "e.g. Head of Compliance"
+                        professionalType === "Legal" ? "e.g. MAH/1234/2020" : "e.g. VP - Compliance & Legal"
                       }
                       value={formData.membershipNo}
                       onChange={(e) => setFormData(prev => ({ ...prev, membershipNo: e.target.value }))}
-                      className="w-full border border-border-light px-3.5 py-2 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors"
+                      className="w-full border border-border-light px-3.5 py-2.5 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors rounded-none"
                     />
                   </div>
 
@@ -1089,7 +1129,7 @@ export default function Home() {
                         placeholder="meera.sharma@sharma.in"
                         value={formData.email}
                         onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full border border-border-light px-3.5 py-2 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors"
+                        className="w-full border border-border-light px-3.5 py-2.5 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors rounded-none"
                       />
                     </div>
                     <div>
@@ -1101,7 +1141,9 @@ export default function Home() {
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                        className="w-full border border-border-light px-3.5 py-2 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors"
+                            className="w-full border border-border-light px-3.5 py-2.5 text-xs focus:outline-none focus:border-charcoal bg-white transition-colors rounded-sm"
+                            pattern="\d{10}"
+                            title="Phone number must be exactly 10 digits"
                       />
                     </div>
                   </div>
@@ -1116,15 +1158,15 @@ export default function Home() {
                       className="mt-0.5 border border-border-light cursor-pointer rounded-none accent-charcoal"
                     />
                     <label htmlFor="consent" className="text-[10px] text-secondary cursor-pointer leading-relaxed">
-                      I declare that the information provided is accurate. I authorize Apex Ledger to cross-reference my details with the corresponding professional institute registry.
+                      I declare that the information provided is accurate. I authorize Apex Forum to cross-reference my details with the corresponding professional institute registry or bar council.
                     </label>
                   </div>
 
                   <button 
                     type="submit" 
-                    className="w-full text-center font-bold bg-charcoal text-white py-3 border border-charcoal hover:bg-white hover:text-charcoal transition-premium text-xs uppercase tracking-wider"
+                    className="w-full text-center font-bold bg-charcoal text-white py-3.5 border border-charcoal hover:bg-cream hover:text-charcoal transition-premium text-xs uppercase tracking-widest rounded-none"
                   >
-                    Submit Application
+                    Submit Application for Screening
                   </button>
 
                 </form>
@@ -1143,17 +1185,17 @@ export default function Home() {
             {/* Logo and Brand column */}
             <div className="col-span-2">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 border border-charcoal flex items-center justify-center font-bold tracking-tighter text-sm bg-charcoal text-white relative">
+                <div className="w-8 h-8 border border-charcoal flex items-center justify-center font-serif font-bold text-sm bg-charcoal text-white relative rounded-none">
                   <span>A</span>
                   <div className="absolute top-0 right-0 w-2 h-2 bg-accent-red"></div>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-extrabold tracking-widest text-xs text-charcoal">APEX LEDGER</span>
-                  <span className="text-[9px] text-secondary font-semibold">CA, CS & CMA PLATFORM</span>
+                  <span className="font-extrabold tracking-widest text-xs text-charcoal uppercase">APEX FORUM</span>
+                  <span className="text-[9px] text-secondary font-semibold uppercase">Finance, Compliance & Legal Network</span>
                 </div>
               </div>
               <p className="text-xs text-secondary mt-4 max-w-sm leading-relaxed">
-                The premier verified network for professional advisory, corporate secretarial compliance, cost audits, and peer intelligence in India.
+                The premier verified network for professional advisory, secretarial compliance, FEMA regulatory affairs, and peer intelligence in India.
               </p>
               <div className="flex items-center gap-4 mt-6">
                 <a href="#" className="p-1 text-secondary hover:text-charcoal transition-colors">
@@ -1178,23 +1220,23 @@ export default function Home() {
 
             {/* Links column 2 */}
             <div>
-              <span className="text-[10px] font-bold text-charcoal tracking-widest uppercase block mb-4">Community</span>
+              <span className="text-[10px] font-bold text-charcoal tracking-widest uppercase block mb-4">Practitioners</span>
               <ul className="space-y-2.5 text-xs text-secondary font-semibold">
                 <li><a href="#contact" className="hover:text-charcoal transition-colors">CA Directory</a></li>
                 <li><a href="#contact" className="hover:text-charcoal transition-colors">CS Directory</a></li>
-                <li><a href="#contact" className="hover:text-charcoal transition-colors">CMA Directory</a></li>
-                <li><a href="#contact" className="hover:text-charcoal transition-colors">Corporate Placements</a></li>
+                <li><a href="#contact" className="hover:text-charcoal transition-colors">Corporate Attorneys</a></li>
+                <li><a href="#contact" className="hover:text-charcoal transition-colors">Compliance Placements</a></li>
               </ul>
             </div>
 
             {/* Links column 3 */}
             <div>
-              <span className="text-[10px] font-bold text-charcoal tracking-widest uppercase block mb-4">Regulatory Bodies</span>
+              <span className="text-[10px] font-bold text-charcoal tracking-widest uppercase block mb-4">Regulatory Resources</span>
               <ul className="space-y-2.5 text-xs text-secondary font-semibold">
                 <li><a href="https://www.icai.org" target="_blank" rel="noopener noreferrer" className="hover:text-charcoal transition-colors flex items-center gap-1"><span>ICAI</span> <ExternalLink className="w-2.5 h-2.5" /></a></li>
                 <li><a href="https://www.icsi.edu" target="_blank" rel="noopener noreferrer" className="hover:text-charcoal transition-colors flex items-center gap-1"><span>ICSI</span> <ExternalLink className="w-2.5 h-2.5" /></a></li>
-                <li><a href="https://icmai.in" target="_blank" rel="noopener noreferrer" className="hover:text-charcoal transition-colors flex items-center gap-1"><span>ICMAI</span> <ExternalLink className="w-2.5 h-2.5" /></a></li>
                 <li><a href="https://www.mca.gov.in" target="_blank" rel="noopener noreferrer" className="hover:text-charcoal transition-colors flex items-center gap-1"><span>Ministry of Corporate Affairs</span> <ExternalLink className="w-2.5 h-2.5" /></a></li>
+                <li><a href="https://www.rbi.org.in" target="_blank" rel="noopener noreferrer" className="hover:text-charcoal transition-colors flex items-center gap-1"><span>Reserve Bank of India</span> <ExternalLink className="w-2.5 h-2.5" /></a></li>
               </ul>
             </div>
 
@@ -1202,7 +1244,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between mt-12 gap-4">
             <span className="text-[10px] text-secondary font-semibold">
-              © {new Date().getFullYear()} Apex Ledger. All rights reserved. 
+              © {new Date().getFullYear()} Apex Forum. All rights reserved. 
             </span>
             <div className="flex items-center gap-6 text-[10px] text-secondary font-semibold">
               <a href="#" className="hover:text-charcoal transition-colors">Privacy Policy</a>

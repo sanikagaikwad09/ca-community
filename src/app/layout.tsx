@@ -9,9 +9,9 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Apex Ledger | India's Premium CA, CS & Legal Professional Community",
-  description: "Connect with Chartered Accountants, Company Secretaries, and Cost & Management Accountants. Join the largest verified network for finance, taxation, compliance, and auditing professionals.",
-  keywords: "CA community, CS network, Legal forum, Chartered Accountants India, Company Secretaries, Cost Management Accountants, finance networking, taxation, corporate law, auditing",
+  title: "Apex Forum | India's Premium CA, CS & Legal Professional Community",
+  description: "Connect with Chartered Accountants, Company Secretaries, Corporate Lawyers, and Governance Professionals. Join the largest verified network for finance, taxation, compliance, and regulatory affairs.",
+  keywords: "CA community, CS network, Corporate Legal forum, Chartered Accountants India, Company Secretaries, Corporate Lawyers, Legal Advisors, FEMA compliance, SEBI LODR, regulatory affairs",
 };
 
 export default function RootLayout({
